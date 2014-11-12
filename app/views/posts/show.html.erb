@@ -1,10 +1,28 @@
-<p>
-  <%= render @post.categories %>
+<p class='pull-right'>
+  [<%= link_to 'edit this post', edit_post_path(@post) %>]
 </p>
 
 <%= render 'shared/content_title', title: @post.title %>
 
 <p>
+  <%= render @post.categories %>
+</p>
+
+<p>
   <%= @post.description %>
   <hr/>
 <p>
+
+<%= link_to 'View all posts', posts_path %>
+
+<h5>Create a comment:</h5>
+<%= render 'shared/form_error', obj: @comment %>
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :body, rows: 3, class: 'span4' %>
+  <br/>
+  <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+<% end %>
+
+<p>
+  <%= render @post.comments %>
+</p>
